@@ -1,4 +1,20 @@
-question_data = [
+import requests # Requests Module for API Calls
+
+# https://opentdb.com/api.php?amount=10&type=boolean
+
+parameters = {
+    "amount": 10, # Amount key as per API URL
+    "type": "boolean" # Type key as per API URL
+}
+
+response = requests.get("https://opentdb.com/api.php", params=parameters) # Get api and pass aditional parameters
+response.raise_for_status()
+data  = response.json()
+print(data["results"]) # Pass results: data object key found in API.
+
+
+
+""" question_data = [
     {
         "category": "Science: Computers",
         "type": "boolean",
@@ -99,4 +115,4 @@ question_data = [
             "True"
         ]
     }
-]
+] """
