@@ -2,6 +2,8 @@
 # checking if the answer was correct
 # checking if we're the end of the quiz
 
+import html # HTML Module for unescaping HTML Entities
+
 class QuizBrain:
 
     def __init__(self, q_list):
@@ -26,8 +28,10 @@ class QuizBrain:
         current_question = self.question_list[self.question_number] # Starts off at zero.
         # This ensures that question number gets increased everytime we show the user
         self.question_number += 1
-         # Save the user's input inside user_answer variable
-        user_answer = input(f"Q.{self.question_number}:{current_question.text} (True/False): ")
+        # Unescape Html entities
+        q_text = html.unescape(self.current_question.text)
+        # Save the user's input inside user_answer variable
+        user_answer = input(f"Q.{self.question_number}:{q_text} (True/False): ")
         # Call check_answer method and pass over the user's answer and correct answer (current_question) within the method
         self.check_answer(user_answer, current_question.answer)
        
