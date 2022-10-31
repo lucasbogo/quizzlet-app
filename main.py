@@ -13,7 +13,7 @@ for question in question_data: # Loop through each of the questins inside the qu
     
 quiz = QuizBrain(question_bank)
 
-# Check if the quiz still has questions through a while loop.
+# Check if the quiz still has questions through a while loop
 while quiz.still_has_questions():
-    # If there are questions, then go to next one.
+    # If True: there are questions, then go to next one. If False, closes the while loop.
     quiz.next_question()

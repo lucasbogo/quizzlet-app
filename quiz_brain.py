@@ -11,12 +11,14 @@ class QuizBrain:
     # Method to check if there are still questions left. This will be called in the 'While Loop' in main.py
     def still_has_questions(self):
         # len function: Gets the lenght of question_list
+        return self.question_number < len(self.question_list) # This is the same as the if condition in line 17
+    
         # If Condition: Check for end of list. If the number of questions is less than the question list, Return True,
-        if self.question_number < len(self.question_list):
+       """  if self.question_number < len(self.question_list):
             return True
         # Otherwise, return False
         else:
-            False 
+            False """ 
     
     # Method NextQuestion
     def next_question(self):
