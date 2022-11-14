@@ -1,6 +1,6 @@
 from question_model import Question
 from data import question_data
-from quiz_brain import QuizBrain
+from quiz_factory import QuizFactory
 from ui import QuizInterface
 
 
@@ -13,7 +13,7 @@ for question in question_data: # Loop through each of the questins inside the qu
     question_bank.append(new_question)
 
 # Create question bank
-quiz = QuizBrain(question_bank)
+quiz = QuizFactory(question_bank)
 # Create Quiz Interface
 quiz_ui = QuizInterface()
 
