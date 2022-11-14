@@ -1,6 +1,6 @@
 from curses import window
 from tkinter import *  # Import everyrhing from TKinter Module
-
+from quiz_factory import QuizFactory
 
 
 THEME_COLOR = "#375362"
@@ -8,7 +8,9 @@ THEME_COLOR = "#375362"
 class QuizInterface:
     
     # This is called everytime we create a new object from this class
-    def __init__(self):
+    def __init__(self, quiz_factory: QuizFactory): # added quiz_factory parameter
+        # Set property for quiz factory
+        self.quiz = quiz_factory
         # Property window set as a new object from the TK class
         self.window = Tk()
         # Change aspects of the window
@@ -25,7 +27,8 @@ class QuizInterface:
         # Question text. Has a single attribute called text. 150 is half of 300, 125 is half of 250. This prevents tuple index out of range
         self.question_text = self.canvas.create_text(
             150, 
-            125, 
+            125,
+            width=280, 
             text="Some Question Text", 
             fill=THEME_COLOR,
             font=("Arial", 20, "italic") 
@@ -43,6 +46,14 @@ class QuizInterface:
         self.false_button = Button(image=false_image, highlightthickness=0)
         self.false_button.grid(row=2, column=1) # column 1 specifies Right position
         
+        # Call the next question method inside thee window loop
+        self.get_next_question()
         
         # Set program to run. TK Inter works by running this endless loop It is constantly checking for updates in the UI.
         self.window.mainloop()
+        
+    # Method that gets next question trough the UI
+    def get_next_question(self):
+    # When the next question is called, we tap into the self.quiz and call the the method (next question)
+        q_text = self.quiz.next_question() # this gives us the output, which is question text
+        self.canvas.itemconfig(self.question_text, text=q_text)
