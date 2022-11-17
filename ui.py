@@ -38,12 +38,12 @@ class QuizInterface:
         
         # Create buttons created form the Button class utilizing downloaded images for true 
         true_image = PhotoImage(file="images/true.png")
-        self.true_button = Button(image=true_image, highlightthickness=0)
+        self.true_button = Button(image=true_image, highlightthickness=0, command=self.true_pressed)
         self.true_button.grid(row=2, column=0) # column 0 specifies left position
         
         # Create buttons created form the Button class utilizing downloaded images for false 
         false_image = PhotoImage(file="images/false.png")
-        self.false_button = Button(image=false_image, highlightthickness=0)
+        self.false_button = Button(image=false_image, highlightthickness=0, command=self.false_pressed)
         self.false_button.grid(row=2, column=1) # column 1 specifies Right position
         
         # Call the next question method inside thee window loop
@@ -57,3 +57,13 @@ class QuizInterface:
     # When the next question is called, we tap into the self.quiz and call the the method (next question)
         q_text = self.quiz.next_question() # this gives us the output, which is question text
         self.canvas.itemconfig(self.question_text, text=q_text)
+        
+    # Method to check if the true button was pressed
+    def true_pressed(self):
+        # Tap into the check_answer method and pass over True when true pressed is called
+        self.quiz.check_answer("True")
+    
+    # Method to check if the falsse button was pressed
+    def false_pressed(self):
+        self.quiz.check_answer("False")
+        

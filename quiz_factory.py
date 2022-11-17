@@ -38,7 +38,8 @@ class QuizFactory:
        
         
     # Method to check if answer is correct or not through users input. It receives user_answer and correct answer to check question
-    def check_answer(self, user_answer, correct_answer):
+    def check_answer(self, user_answer):
+        correct_answer = self.current_question.answer
         # Condition: if user's answer is equal to the correct answer | drop to lower case to make comparison easier (True or true, False or false)
         if user_answer.lower() == correct_answer.lower():
             # Increment user score if he or she gets it right
