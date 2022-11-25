@@ -54,19 +54,30 @@ class QuizInterface:
         
     # Method that gets next question trough the UI
     def get_next_question(self):
-    # When the next question is called, we tap into the self.quiz and call the the method (next question)
+        # Reset the background to white when next question is called
+        self.canvas.config(bg="white")
+        # When the next question is called, we tap into the self.quiz and call the the method (next question)
         q_text = self.quiz.next_question() # this gives us the output, which is question text
         self.canvas.itemconfig(self.question_text, text=q_text)
         
     # Method to check if the true button was pressed
     def true_pressed(self):
-        # Tap into the check_answer method and pass over True when true pressed is called | Check answer is_right
-        is_right = self.quiz.check_answer("True")
+        # Call method feedback and pass in check answer
+        self.give_feedback(self.quiz.check_answer("True"))
     
     # Method to check if the falsse button was pressed
     def false_pressed(self):
-        is_right = self.quiz.check_answer("False")
+         # Call method feedback and pass in check answer
+        self.give_feedback(self.quiz.check_answer("False"))
         
     # Method give feeback, this tells the user whether they fot the answer right or not
-    def give_feedbaack(self, is_right)
+    def give_feedback(self, is_right):
+        # If user get the answer right, call canvas config and change background to green
+        if is_right:
+            self.canvas.config(bg="green")
+        # However, if its false...
+        else:
+            self.canvas.config(bg="red")
+        # TKinter sleeper method: this ensures the screen goes back to white after user feedback, delayed for 1000 miliseconds
+        self.window.after(1000, self.get_next_question)
         
