@@ -2,6 +2,13 @@ import requests # Requests Module for API Calls
 
 # https://opentdb.com/api.php?amount=10&type=boolean
 
+class MetaSingleton(type):
+    _instances ={}
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super(MetaSingleton, cls).__call__(*args, **kwargs)
+        return cls._instances[cls]
+
 parameters = {
     "amount": 10, # Amount key as per API URL
     "type": "boolean" # Type key as per API URL

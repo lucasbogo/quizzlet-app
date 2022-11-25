@@ -66,6 +66,9 @@ class QuizInterface:
         # Otherwise, stop next question and tell the user they've reached the end of the quiz
         else: 
             self.canvas.itemconfig(self.question_text, text="You've reached the end of the quiz")
+            # Disable true and false buttons when end of quiz is reached
+            self.true_button.config(state="disabled")
+            self.false_button.config(state="disabled")
             
         
     # Method to check if the true button was pressed
