@@ -22,5 +22,5 @@ quiz_ui = QuizInterface(quiz) # the quiz that is created from the quiz_factory i
     # If True: there are questions, then go to next one. If False, closes the while loop.
     quiz.next_question() """
 
-print(f"You've completed the quiz")
-print(f"your final score was: {quiz.score}/{quiz.question_number}")
+""" print(f"You've completed the quiz")
+print(f"your final score was: {quiz.score}/{quiz.question_number}") """

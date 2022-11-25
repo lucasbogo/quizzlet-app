@@ -56,11 +56,17 @@ class QuizInterface:
     def get_next_question(self):
         # Reset the background to white when next question is called
         self.canvas.config(bg="white")
-        # Set the score label in UI to change text to new score
-        self.score_label.config(text=f"Score: {self.quiz.score}")
-        # When the next question is called, we tap into the self.quiz and call the the method (next question)
-        q_text = self.quiz.next_question() # this gives us the output, which is question text
-        self.canvas.itemconfig(self.question_text, text=q_text)
+        # If the quiz still has question, then go to next question
+        if self.quiz.still_has_questions():
+            # Set the score label in UI to change text to new score
+            self.score_label.config(text=f"Score: {self.quiz.score}")
+            # When the next question is called, we tap into the self.quiz and call the the method (next question)
+            q_text = self.quiz.next_question() # this gives us the output, which is question text
+            self.canvas.itemconfig(self.question_text, text=q_text)
+        # Otherwise, stop next question and tell the user they've reached the end of the quiz
+        else: 
+            self.canvas.itemconfig(self.question_text, text="You've reached the end of the quiz")
+            
         
     # Method to check if the true button was pressed
     def true_pressed(self):
