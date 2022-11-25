@@ -60,10 +60,13 @@ class QuizInterface:
         
     # Method to check if the true button was pressed
     def true_pressed(self):
-        # Tap into the check_answer method and pass over True when true pressed is called
-        self.quiz.check_answer("True")
+        # Tap into the check_answer method and pass over True when true pressed is called | Check answer is_right
+        is_right = self.quiz.check_answer("True")
     
     # Method to check if the falsse button was pressed
     def false_pressed(self):
-        self.quiz.check_answer("False")
+        is_right = self.quiz.check_answer("False")
+        
+    # Method give feeback, this tells the user whether they fot the answer right or not
+    def give_feedbaack(self, is_right)
         
