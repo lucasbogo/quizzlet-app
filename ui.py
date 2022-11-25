@@ -56,6 +56,8 @@ class QuizInterface:
     def get_next_question(self):
         # Reset the background to white when next question is called
         self.canvas.config(bg="white")
+        # Set the score label in UI to change text to new score
+        self.score_label.config(text=f"Score: {self.quiz.score}")
         # When the next question is called, we tap into the self.quiz and call the the method (next question)
         q_text = self.quiz.next_question() # this gives us the output, which is question text
         self.canvas.itemconfig(self.question_text, text=q_text)
